@@ -49,20 +49,48 @@ be naujos versijos kūrimo.
    SCOREBOARD
 ========================================================== */
 
---score-y: 0px;
+/*
+BLOKO POZICIJA EKRANE
 
---score-width: 800px;
---score-height: 118px;
+x = kairė/dešinė
+y = aukštyn/žemyn
+*/
+
+--score-x: 710px;
+--score-y: 10px;
+
+/*
+MATOMO LANGO DYDIS
+*/
+
+--score-width: 490px;
+--score-height: 185px;
+
+/*
+FIBA PUSLAPIO CROP
+
+left = horizontalus scroll
+top = vertikalus scroll
+*/
 
 --score-left: 0px;
---score-top: -40px;
+--score-top: -200px;
+
+/*
+BLOKO DIDINIMAS
+
+1.00 = originalus dydis
+*/
+
+--score-scale: 1.00;
+
 
 /* ==========================================================
    PLAYERS
 ========================================================== */
 
 --players-x: 0px;
---players-y: 0px;
+--players-y: 10px;
 
 --players-width: 650px;
 --players-height: 800px;
@@ -72,63 +100,19 @@ be naujos versijos kūrimo.
 
 --players-scale: 1.35;
 
+
 /* ==========================================================
    TEAM STATS
 ========================================================== */
 
-/*
-Panelės vieta ekrane
-*/
-
 --team-x: 1250px;
---team-y: 0px;
-
-/*
-Panelės dydis
-
-Didink width:
-platesnė statistika
-
-Didink height:
-daugiau eilučių
-*/
+--team-y: 10px;
 
 --team-width: 660px;
---team-height: 840px;
+--team-height: 745px;
 
-/*
-Horizontalus crop
-
-Labiau neigiamas:
-važiuoja į dešinę
-
-Arčiau nulio:
-važiuoja į kairę
-*/
-
---team-left: 0px;
-
-/*
-VERTIKALUS CROP
-
-Tai svarbiausias Team Stats parametras.
-
-Labiau neigiamas:
-važiuoja žemyn FIBA puslapyje.
-
-Arčiau nulio:
-važiuoja aukštyn.
-
-Tikslas:
-pagauti pilną komandinės statistikos lentelę
-(MŽ / 2T / 3T / BM / AK / RP ...)
-*/
-
---team-top: -2000px;
-
-/*
-Statistikos didinimas
-*/
+--team-left: -0px;
+--team-top: -2030px;
 
 --team-scale: 1.35;
 
@@ -162,9 +146,7 @@ body{
 
 .score{
 
-    left:50%;
-    transform:translateX(-50%);
-
+    left:var(--score-x);
     top:var(--score-y);
 
     width:var(--score-width);
@@ -183,6 +165,9 @@ body{
 
     left:var(--score-left);
     top:var(--score-top);
+
+    transform:scale(var(--score-scale));
+    transform-origin:top left;
 
 }
 
@@ -267,6 +252,10 @@ body{
 </div>
 
 <script>
+
+/* ==========================================================
+   KEISTI TIK ŠIĄ REIKŠMĘ
+========================================================== */
 
 const GAME_ID = "2792695";
 
