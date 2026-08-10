@@ -1,0 +1,283 @@
+<!--
+OVERLAY v1.0 STABLE
+
+Patvirtinta:
+2026-08-09
+
+GAME_ID keisti tik JS dalyje.
+
+Neliesti:
+
+score-*
+players-*
+team-*
+
+be naujos versijos kūrimo.
+-->
+
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="utf-8">
+
+<style>
+
+:root{
+
+/* ==========================================================
+   SCOREBOARD IFRAME
+========================================================== */
+
+--score-iframe-width: 1400px;
+--score-iframe-height: 2500px;
+
+/* ==========================================================
+   PLAYERS IFRAME
+========================================================== */
+
+--players-iframe-width: 500px;
+--players-iframe-height: 2500px;
+
+/* ==========================================================
+   TEAM STATS IFRAME
+========================================================== */
+
+--team-iframe-width: 1400px;
+--team-iframe-height: 2500px;
+
+/* ==========================================================
+   SCOREBOARD
+========================================================== */
+
+--score-y: 0px;
+
+--score-width: 500px;
+--score-height: 118px;
+
+--score-left: -450px;
+--score-top: -40px;
+
+/* ==========================================================
+   PLAYERS
+========================================================== */
+
+--players-x: 0px;
+--players-y: 0px;
+
+--players-width: 650px;
+--players-height: 800px;
+
+--players-left: 0px;
+--players-top: -560px;
+
+--players-scale: 1.35;
+
+/* ==========================================================
+   TEAM STATS
+========================================================== */
+
+/*
+Panelės vieta ekrane
+*/
+
+--team-x: 1250px;
+--team-y: 0px;
+
+/*
+Panelės dydis
+
+Didink width:
+platesnė statistika
+
+Didink height:
+daugiau eilučių
+*/
+
+--team-width: 660px;
+--team-height: 860px;
+
+/*
+Horizontalus crop
+
+Labiau neigiamas:
+važiuoja į dešinę
+
+Arčiau nulio:
+važiuoja į kairę
+*/
+
+--team-left: -150px;
+
+/*
+VERTIKALUS CROP
+
+Tai svarbiausias Team Stats parametras.
+
+Labiau neigiamas:
+važiuoja žemyn FIBA puslapyje.
+
+Arčiau nulio:
+važiuoja aukštyn.
+
+Tikslas:
+pagauti pilną komandinės statistikos lentelę
+(MŽ / 2T / 3T / BM / AK / RP ...)
+*/
+
+--team-top: -800px;
+
+/*
+Statistikos didinimas
+*/
+
+--team-scale: 1.35;
+
+}
+
+html,
+body{
+
+    margin:0;
+    padding:0;
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    background:transparent;
+
+}
+
+.panel{
+
+    position:absolute;
+    overflow:hidden;
+
+}
+
+/* ==========================================================
+   SCOREBOARD
+========================================================== */
+
+.score{
+
+    left:50%;
+    transform:translateX(-50%);
+
+    top:var(--score-y);
+
+    width:var(--score-width);
+    height:var(--score-height);
+
+}
+
+.score iframe{
+
+    position:absolute;
+
+    width:var(--score-iframe-width);
+    height:var(--score-iframe-height);
+
+    border:none;
+
+    left:var(--score-left);
+    top:var(--score-top);
+
+}
+
+/* ==========================================================
+   PLAYERS
+========================================================== */
+
+.players{
+
+    left:var(--players-x);
+    top:var(--players-y);
+
+    width:var(--players-width);
+    height:var(--players-height);
+
+}
+
+.players iframe{
+
+    position:absolute;
+
+    width:var(--players-iframe-width);
+    height:var(--players-iframe-height);
+
+    border:none;
+
+    left:var(--players-left);
+    top:var(--players-top);
+
+    transform:scale(var(--players-scale));
+    transform-origin:top left;
+
+}
+
+/* ==========================================================
+   TEAM STATS
+========================================================== */
+
+.team{
+
+    left:var(--team-x);
+    top:var(--team-y);
+
+    width:var(--team-width);
+    height:var(--team-height);
+
+}
+
+.team iframe{
+
+    position:absolute;
+
+    width:var(--team-iframe-width);
+    height:var(--team-iframe-height);
+
+    border:none;
+
+    left:var(--team-left);
+    top:var(--team-top);
+
+    transform:scale(var(--team-scale));
+    transform-origin:top left;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="panel score">
+    <iframe id="scoreFrame"></iframe>
+</div>
+
+<div class="panel players">
+    <iframe id="playersFrame"></iframe>
+</div>
+
+<div class="panel team">
+    <iframe id="teamFrame"></iframe>
+</div>
+
+<script>
+
+const GAME_ID = "2792695";
+
+const FIBA_URL =
+`https://fibalivestats.dcd.shared.geniussports.com/u/BNW/${GAME_ID}/`;
+
+document.getElementById("scoreFrame").src = FIBA_URL;
+document.getElementById("playersFrame").src = FIBA_URL;
+document.getElementById("teamFrame").src = FIBA_URL;
+
+</script>
+
+</body>
+</html>
